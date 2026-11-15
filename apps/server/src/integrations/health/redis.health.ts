@@ -1,21 +1,22 @@
 import {
-  HealthCheckError,
-  HealthIndicator,
   HealthIndicatorResult,
+  HealthIndicatorService,
 } from '@nestjs/terminus';
 import { Injectable, Logger } from '@nestjs/common';
 import { EnvironmentService } from '../environment/environment.service';
 import { Redis } from 'ioredis';
 
 @Injectable()
-export class RedisHealthIndicator extends HealthIndicator {
+export class RedisHealthIndicator {
   private readonly logger = new Logger(RedisHealthIndicator.name);
 
-  constructor(private environmentService: EnvironmentService) {
-    super();
-  }
+  constructor(
+    private readonly healthIndicatorService: HealthIndicatorService,
+    private readonly environmentService: EnvironmentService,
+  ) {}
 
   async pingCheck(key: string): Promise<HealthIndicatorResult> {
+    const check = this.healthIndicatorService.check(key);
     try {
       const redis = new Redis(this.environmentService.getRedisUrl(), {
         maxRetriesPerRequest: 15,
@@ -23,13 +24,10 @@ export class RedisHealthIndicator extends HealthIndicator {
 
       await redis.ping();
       redis.disconnect();
-      return this.getStatus(key, true);
+      return check.up();
     } catch (e) {
       this.logger.error(e);
-      throw new HealthCheckError(
-        `${key} is not available`,
-        this.getStatus(key, false),
-      );
+      return check.down(`${key} is not available`);
     }
   }
 }
