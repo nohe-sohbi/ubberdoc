@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { EnvironmentService } from '../../../integrations/environment/environment.service';
 import { TokensDto } from '../dto/tokens.dto';
 import { JwtPayload, JwtRefreshPayload, JwtType } from '../dto/jwt-payload';
@@ -32,7 +32,9 @@ export class TokenService {
       type: JwtType.REFRESH,
     };
     const expiresIn = this.environmentService.getJwtTokenExpiresIn();
-    return this.jwtService.sign(payload, { expiresIn });
+    return this.jwtService.sign(payload, {
+      expiresIn: expiresIn as JwtSignOptions['expiresIn'],
+    });
   }
 
   async generateTokens(user: User): Promise<TokensDto> {
