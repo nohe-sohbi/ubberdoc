@@ -21,26 +21,14 @@
     "@hocuspocus/provider": "^2.13.5",
     "@hocuspocus/server": "^2.13.5",
     "@hocuspocus/transformer": "^2.13.5",
-    "@joplin/turndown": [
-      4,
-      0,
-      89
-    ],
-    "@joplin/turndown-plugin-gfm": [
-      1,
-      0,
-      71
-    ],
+    "@joplin/turndown": "4.0.89",
+    "@joplin/turndown-plugin-gfm": "1.0.71",
     "@sindresorhus/slugify": "^2.2.1",
     "@tiptap/core": "^2.6.6",
     "@tiptap/extension-code-block": "^2.6.6",
     "@tiptap/extension-code-block-lowlight": "^2.6.6",
     "@tiptap/extension-collaboration": "^2.6.6",
-    "@tiptap/extension-collaboration-cursor": [
-      2,
-      26,
-      2
-    ],
+    "@tiptap/extension-collaboration-cursor": "2.26.2",
     "@tiptap/extension-color": "^2.6.6",
     "@tiptap/extension-document": "^2.6.6",
     "@tiptap/extension-heading": "^2.6.6",
@@ -77,27 +65,15 @@
     "ioredis": "^5.4.1",
     "uuid": "^10.0.0",
     "y-indexeddb": "^9.0.12",
-    "yjs": [
-      13,
-      6,
-      33
-    ]
+    "yjs": "13.6.33"
   },
   "devDependencies": {
     "@nx/js": "19.6.3",
-    "@types/bytes": [
-      3,
-      1,
-      6
-    ],
+    "@types/bytes": "3.1.7",
     "@types/uuid": "^10.0.0",
     "concurrently": "^8.2.2",
     "nx": "19.6.3",
-    "tsx": [
-      4,
-      23,
-      15
-    ]
+    "tsx": "4.23.15"
   },
   "workspaces": {
     "packages": [
